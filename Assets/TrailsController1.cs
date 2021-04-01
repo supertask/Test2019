@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleController : MonoBehaviour
+public class TrailsController2 : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject particleSystemObj;
@@ -30,32 +30,33 @@ public class ParticleController : MonoBehaviour
             Vector3 forwardDir = mousePos - previousMousePos;
             Vector3 backDir = - forwardDir;
 
-            /*
-            int maxParticles = this.particleSystem.main.maxParticles;
-            if (particles == null || particles.Length < maxParticles)
-            {
-                particles = new ParticleSystem.Particle[maxParticles];
-            }
 
-            var power = 100.0f;
-            int particleNum = this.particleSystem.GetParticles(particles);
 
-            for (int i = 0; i < particleNum; i++)
-            {
-                var particleVelocity = particles[i].velocity;
-                particleVelocity.x = backDir.x * power;
-                particleVelocity.y = backDir.y * power;
-                particles[i].velocity = particleVelocity; // * (i / (float) particleNum);
-            }
-
-            this.particleSystem.SetParticles(particles, particleNum);
-            */
-
-            //particleSystemObj.transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(-90, 0, 0);
+            particleSystemObj.transform.rotation = Quaternion.LookRotation(backDir); // * Quaternion.Euler(-90, 0, 0);
             particleSystemObj.transform.position = mousePos;
 
             previousMousePos = mousePos;
         }
 
+        /*
+        int maxParticles = this.particleSystem.main.maxParticles;
+        if (particles == null || particles.Length < maxParticles)
+        {
+            particles = new ParticleSystem.Particle[maxParticles];
+        }
+
+        var power = 100.0f;
+        int particleNum = this.particleSystem.GetParticles(particles);
+
+        for (int i = 0; i < particleNum; i++)
+        {
+            var particleVelocity = particles[i].velocity;
+            particleVelocity.x = backDir.x * power;
+            particleVelocity.y = backDir.y * power;
+            particles[i].velocity = particleVelocity; // * (i / (float) particleNum);
+        }
+
+        this.particleSystem.SetParticles(particles, particleNum);
+        */
     }
 }
